@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Minimal repo manifest for reproducing the binder-rpc + AVF host build layout
+  (CMake + Cargo: virtmgr, vm, crosvm). Pin: android-15.0.0_r14.
+
+  Paths match add_subdirectory / Cargo path dependencies under this tree.
+-->
+<manifest>
+  <remote name="aosp" fetch="https://android.googlesource.com" />
+  <default revision="refs/tags/android-15.0.0_r14" remote="aosp" sync-j="4" />
+
+  <project path="packages/modules/Virtualization"
+           name="platform/packages/modules/Virtualization" />
+  <project path="external/crosvm"
+           name="platform/external/crosvm" />
+  <project path="external/minijail"
+           name="platform/external/minijail" />
+  <project path="frameworks/native"
+           name="platform/frameworks/native" />
+  <project path="system/core"
+           name="platform/system/core" />
+</manifest>
