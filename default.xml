@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <remote name="miyu-xu" fetch="https://github.com/miyu-xu" />
+  <remote name="miyu-xu" fetch="git@github.com:miyu-xu" />
   <default revision="refs/heads/bscp-android-15.0.0_r14" remote="miyu-xu" sync-j="4" />
 
   <project path="." name="bscp-root"/>
