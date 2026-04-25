@@ -3,7 +3,7 @@
   <remote name="miyu-xu" fetch="https://github.com/miyu-xu" />
   <default revision="refs/heads/bscp-android-15.0.0_r14" remote="miyu-xu" sync-j="4" />
 
-  <project path="." name="bscp-root" revision="refs/heads/main"/>
+  <project path="." name="bscp-root"/>
   <project path="packages/modules/Virtualization" name="packages-modules-Virtualization" />
   <project path="external/crosvm" name="external-crosvm" />
   <project path="external/minijail" name="external-minijail" />
