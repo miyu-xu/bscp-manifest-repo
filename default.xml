@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Minimal repo manifest for reproducing the binder-rpc + AVF host build layout
-  (CMake + Cargo: virtmgr, vm, crosvm). Pin: android-15.0.0_r14.
-
-  Paths match add_subdirectory / Cargo path dependencies under this tree.
--->
 <manifest>
-  <remote name="aosp" fetch="https://android.googlesource.com" />
   <remote name="miyu-xu" fetch="https://github.com/miyu-xu" />
-  <default revision="refs/tags/bscp-android-15.0.0_r14" remote="miyu-xu" sync-j="4" />
+  <default revision="refs/heads/bscp-android-15.0.0_r14" remote="miyu-xu" sync-j="4" />
 
-  <project path="."
-           name="bscp-root" />
-  <project path="packages/modules/Virtualization"
-           name="packages-modules-Virtualization" />
-  <project path="external/crosvm"
-           name="external-crosvm" />
-  <project path="external/minijail"
-           name="external-minijail" />
-  <project path="frameworks/native"
-           name="frameworks-native" />
-  <project path="system/core"
-           name="system-core" />
+  <project path="." name="bscp-root" revision="refs/heads/main"/>
+  <project path="packages/modules/Virtualization" name="packages-modules-Virtualization" />
+  <project path="external/crosvm" name="external-crosvm" />
+  <project path="external/minijail" name="external-minijail" />
+  <project path="frameworks/native" name="frameworks-native" />
+  <project path="system/core" name="system-core" />
 </manifest>
