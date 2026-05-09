@@ -7,7 +7,11 @@
   <project path="packages/modules/Virtualization" name="packages-modules-Virtualization" />
   <project path="external/crosvm" name="external-crosvm" />
   <project path="external/minijail" name="external-minijail" />
+  <project path="external/angle" name="external-angle" revision="refs/heads/chromium/7825"/>
+  <project path="external/moltenvk" name="external-moltenvk" revision="refs/heads/main"/>
+  <project path="external/rust/rutabaga_gfx" name="external-rust-rutabaga_gfx" revision="refs/tags/android-16.0.0_r4"/>
   <project path="frameworks/native" name="frameworks-native" />
+  <project path="hardware/google/gfxstream" name="hardware-google-gfxstream" revision="refs/tags/android-15.0.0_r14"/>
   <project path="system/core" name="system-core" />
-  <project path="kernel" name="kernel" />
+  <project path="kernel" name="kernel" revision="refs/tags/android15-6.6-2026-01_r14"/>
 </manifest>
