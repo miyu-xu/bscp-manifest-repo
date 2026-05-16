@@ -7,6 +7,7 @@
   <project path="packages/modules/Virtualization" name="packages-modules-Virtualization" />
   <project path="external/crosvm" name="external-crosvm" />
   <project path="external/flatbuffers" name="external-flatbuffers" revision="refs/tags/android-15.0.0_r14"/>
+  <project path="external/lz4" name="external-lz4" revision="refs/tags/android-15.0.0_r14"/>
   <project path="external/minijail" name="external-minijail" />
   <project path="external/rust/rutabaga_gfx" name="external-rust-rutabaga_gfx" revision="refs/tags/android-16.0.0_r4"/>
   <project path="frameworks/native" name="frameworks-native" />
