@@ -11,5 +11,4 @@
   <project path="frameworks/native" name="frameworks-native" />
   <project path="hardware/google/gfxstream" name="hardware-google-gfxstream" revision="refs/tags/android-15.0.0_r14"/>
   <project path="system/core" name="system-core" />
-  <project path="kernel" name="kernel" revision="refs/tags/android15-6.6-2026-01_r14"/>
 </manifest>
