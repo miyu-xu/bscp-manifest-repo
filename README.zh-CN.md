@@ -40,11 +40,18 @@ pvmfw、AVB/Verified Boot、受保护内存、可信密钥与证明服务、严�
 有条件的演进路径；是否可用取决于 SoC、内核、固件、Android 版本和设备厂商配置，不能仅凭
 存在虚拟化扩展就宣称已经达到 pVM 安全等级。
 
-图形与通用计算是下一阶段重点。作者计划为 Microdroid 增加面向 Android Vulkan 的受控支持，
-逐步打通 Guest Vulkan loader/驱动、virtio-gpu、rutabaga/gfxstream、Host Vulkan/Metal/D3D
-后端，以及显存分配、同步、资源配额和错误隔离。完成这些能力并通过跨平台一致性、安全性和
-性能验证后，Microdroid 将不再局限于无图形 Payload，而可作为可调度的跨平台算力端点，承载
-图形、媒体、AI 推理和其他 GPU/通用计算任务。
+图形与通用计算是下一阶段重点。当前 Host 侧的 virtio-gpu、rutabaga/gfxstream 及平台图形
+后端已经具备支撑 Microdroid Vulkan 离屏渲染的基础能力，不需要重新设计 Host 图形架构。
+对于已经按现有图形 profile 构建并装入 gfxstream/ANGLE runtime 的 Host 发行物，剩余代码
+改动主要集中在 Guest：在 Microdroid 镜像中启用并打包 Vulkan loader、Guest ICD/驱动及相关
+运行库，配置设备访问、SELinux/权限和 VM GPU profile，再完成跨平台一致性、安全性、资源
+配额与性能门禁。未包含可选图形 runtime 的默认 Host 包只需启用现有构建/打包配置，不代表
+需要开发新的 Host 后端。
+
+离屏路径不依赖窗口或显示 scanout；Payload 可以把 Vulkan image/buffer 作为计算与渲染目标，
+再通过受控 readback 或资源导出获取结果。上述 Guest 能力和端到端证据完成后，Microdroid 将
+不再局限于无图形 Payload，而可作为可调度的跨平台算力端点，承载图形、媒体、AI 推理和其他
+GPU/通用计算任务。
 
 长期来看，BSCP 希望成为算力基础设施的一部分：以不可变、可验证的 Guest 镜像作为交付单元，
 以虚拟机作为租户和故障边界，并在统一控制面中提供调度、配额、可观测性、审计、升级和回滚。
