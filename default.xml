@@ -3,7 +3,7 @@
   <remote name="miyu-xu" fetch="https://github.com/miyu-xu/" />
   <default revision="refs/heads/bscp-android-15.0.0_r14" remote="miyu-xu" sync-j="4" />
 
-  <project path="." name="bscp-root" revision="89a584c2d9a5203b5e1f01116d1be5a806dd8056" />
+  <project path="." name="bscp-root" revision="43e4786a48c142b4c8b6f4bfb0db38cd32b20e42" />
   <project path="packages/modules/Virtualization" name="packages-modules-Virtualization" />
   <project path="external/crosvm" name="external-crosvm" />
   <project path="external/flatbuffers" name="external-flatbuffers"/>

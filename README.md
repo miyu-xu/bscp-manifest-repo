@@ -1,5 +1,7 @@
 # BSCP workspace manifest
 
+Microdroid integration is published on r14; GitHub default remains main and lifecycle activation is opt-in. See [current delivery status](https://github.com/miyu-xu/bscp-root/blob/bscp-android-15.0.0_r14/doc/MICRODROID_STATUS.md) for version-bound three-platform capability, normal/fault evidence and limits.
+
 [简体中文](README.zh-CN.md) | English
 
 This is the canonical entry point for BSCP: a cross-platform, security-isolated Android compute
@@ -51,29 +53,7 @@ hardware-hardened execution environment. This path is conditional: availability 
 SoC, kernel, firmware, Android release, and device-vendor configuration. Virtualization extensions
 alone are not evidence of pVM-grade security.
 
-Graphics and general-purpose compute are a planned next stage. The host-side virtio-gpu,
-rutabaga/gfxstream, and platform graphics backends already provide the foundation required for
-Microdroid Vulkan offscreen rendering; a new host graphics architecture is not required. The
-remaining code work for a host distribution built with the existing graphics profile and staged
-gfxstream/ANGLE runtime is primarily guest-side: enable and package the Vulkan loader, guest
-ICD/driver, and runtime libraries in the Microdroid image; configure device access,
-SELinux/permissions, and the VM GPU profile; then establish cross-platform correctness, security,
-resource-quota, and performance gates. A default host package that omits the optional graphics
-runtime only needs the existing build and packaging profile enabled; it does not require a new host
-backend implementation.
-
-The offscreen path does not require a window or display scanout. A payload can use Vulkan images
-and buffers as compute or rendering targets and retrieve results through controlled readback or
-resource export. Once that guest enablement and end-to-end evidence are complete, Microdroid can
-move beyond headless payloads and operate as a schedulable cross-platform compute endpoint for
-graphics, media, AI inference, and other GPU or general compute workloads.
-
-The long-term objective is for BSCP to serve as compute infrastructure: immutable and verifiable
-guest images as delivery units, VMs as tenant and failure boundaries, and a common control plane
-for scheduling, quotas, observability, audit, upgrades, and rollback. Success is not merely the
-ability to boot a VM. It is the ability to reproduce a workload across platforms, bound its
-resources, contain its failures, retain auditable evidence, and explicitly reject unsupported
-security requirements instead of silently degrading them.
+Fixed-profile three-platform graphics and deterministic compute acceptance is complete: GPU on/off, Vulkan offscreen/coherent/VADD, healthy resume and timeout/disconnect resource reclamation. This is not an arbitrary workload platform, production-isolation, concurrency, performance or all-fault guarantee. See the current status link above.
 
 ## Choose a branch
 

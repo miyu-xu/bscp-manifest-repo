@@ -1,5 +1,7 @@
 # BSCP 工作区 Manifest
 
+当前 Microdroid 工程线已发布到 r14，GitHub 默认分支仍为 main；入口为显式 opt-in。三端正常/异常有限验收、版本、能力和未覆盖边界见[现行交付状态](https://github.com/miyu-xu/bscp-root/blob/bscp-android-15.0.0_r14/doc/MICRODROID_STATUS.zh-CN.md)。历史实验不替代当前版本证据。
+
 简体中文 | [English](README.md)
 
 本仓库是 BSCP 的规范主入口。BSCP 是面向 Linux/KVM、macOS/HVF 和 Windows/WHPX 的跨平台、
@@ -40,24 +42,7 @@ pvmfw、AVB/Verified Boot、受保护内存、可信密钥与证明服务、严�
 有条件的演进路径；是否可用取决于 SoC、内核、固件、Android 版本和设备厂商配置，不能仅凭
 存在虚拟化扩展就宣称已经达到 pVM 安全等级。
 
-图形与通用计算是下一阶段重点。当前 Host 侧的 virtio-gpu、rutabaga/gfxstream 及平台图形
-后端已经具备支撑 Microdroid Vulkan 离屏渲染的基础能力，不需要重新设计 Host 图形架构。
-对于已经按现有图形 profile 构建并装入 gfxstream/ANGLE runtime 的 Host 发行物，剩余代码
-改动主要集中在 Guest：在 Microdroid 镜像中启用并打包 Vulkan loader、Guest ICD/驱动及相关
-运行库，配置设备访问、SELinux/权限和 VM GPU profile，再完成跨平台一致性、安全性、资源
-配额与性能门禁。未包含可选图形 runtime 的默认 Host 包只需启用现有构建/打包配置，不代表
-需要开发新的 Host 后端。
-
-离屏路径不依赖窗口或显示 scanout；Payload 可以把 Vulkan image/buffer 作为计算与渲染目标，
-再通过受控 readback 或资源导出获取结果。上述 Guest 能力和端到端证据完成后，Microdroid 将
-不再局限于无图形 Payload，而可作为可调度的跨平台算力端点，承载图形、媒体、AI 推理和其他
-GPU/通用计算任务。
-
-长期来看，BSCP 希望成为算力基础设施的一部分：以不可变、可验证的 Guest 镜像作为交付单元，
-以虚拟机作为租户和故障边界，并在统一控制面中提供调度、配额、可观测性、审计、升级和回滚。
-项目评价标准不是“能否启动一个虚拟机”，而是同一工作负载能否跨平台复现、资源能否被明确
-约束、故障能否被隔离、运行证据能否被审计，以及安全能力不足时系统能否显式拒绝而非静默
-降级。
+图形与确定性计算的固定配置三端有限验证已完成，包括 GPU 开/关、Vulkan 离屏/coherent/VADD、健康恢复及超时/断连资源收尾。此结果不是任意业务平台、生产隔离、并发、性能或所有故障保证。现行状态与精确证据边界见上方链接。
 
 ## 分支选择
 
