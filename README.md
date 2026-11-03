@@ -166,3 +166,5 @@ This restriction makes BSCP-original material source-available, not OSI-approved
 software. Every repository selected by the manifest retains its own license and notices. See the
 [workspace license policy](LICENSE_POLICY.md) before building, packaging, or redistributing the
 combined workspace.
+
+Current installation/verification instructions use private deployment configuration. AOSP 17 remains the default; r14 is rollback only. See [current release guidance](AOSP17-PREPARATION.md).

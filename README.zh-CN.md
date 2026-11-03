@@ -135,3 +135,5 @@ BSCP 原创 manifest 配置和文档采用
 由于限制商业用途，BSCP 原创材料属于 source-available，而不是 OSI 批准的开源软件。manifest
 选择的每个独立仓库继续保留自身许可证和声明。构建、打包或再分发组合工作区之前，请阅读
 [工作区许可证策略](LICENSE_POLICY.zh-CN.md)。
+
+Current installation/verification instructions use private deployment configuration. AOSP 17 remains the default; r14 is rollback only. See [current release guidance](AOSP17-PREPARATION.md).

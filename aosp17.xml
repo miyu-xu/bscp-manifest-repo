@@ -1106,5 +1106,5 @@
     <copyfile src="lk_inc.mk" dest="lk_inc.mk" />
   </project>
   <remote name="bscp-release" fetch="https://github.com/miyu-xu/" />
-  <project path="." name="bscp-root" remote="bscp-release" revision="6e595632b1518166317affb7442de042618c17ff" groups="bscp" />
+  <project path="." name="bscp-root" remote="bscp-release" revision="746712bac5262ff2f91c45b4ec23e9d6ab0f5e3a" groups="bscp" />
 </manifest>
