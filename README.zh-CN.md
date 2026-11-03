@@ -1,6 +1,8 @@
-# Default: AOSP 17
+# 默认版本：AOSP 17
 
-The default manifest now selects the fixed AOSP 17 baseline. [Release, supported deployment conditions and rollback](AOSP17-PREPARATION.md). Reference runtime archives are not arbitrary-machine installers.
+默认清单包含 `aosp17.xml`：1087 个固定官方项目及已发布 BSCP 根仓库。r14 保留用于回滚，不是当前默认。参考运行包仅支持已有准入部署，不是新机器通用安装器。
+
+[当前中英文文档](https://github.com/miyu-xu/bscp-root/blob/main/doc/README.zh-CN.md) | [发布、校验与回滚](https://github.com/miyu-xu/bscp-root/blob/main/doc/RELEASE.zh-CN.md) | [固定发布记录](AOSP17-PREPARATION.md)。
 
 # BSCP 工作区 Manifest
 
