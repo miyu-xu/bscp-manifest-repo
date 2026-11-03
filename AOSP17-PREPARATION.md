@@ -1,10 +1,10 @@
 # Published AOSP 17 default
 
-`main/default.xml` includes `aosp17.xml`: 1087 official projects retain their exact fixed SHA revisions, plus the published BSCP root commit 746712bac5262ff2f91c45b4ec23e9d6ab0f5e3a. The custom Host source/build recipes and Guest adaptations are in the root release tree; syncing official projects alone does not build these ports.
+`main/default.xml` includes `aosp17.xml`: 1087 official projects retain their exact fixed SHA revisions, plus the published BSCP root commit d25ad8d7cf42f704fefb208f5129048b7009100c. The custom Host source/build recipes and Guest adaptations are in the root release tree; syncing official projects alone does not build these ports.
 
 Release: https://github.com/miyu-xu/bscp-root/releases/tag/bscp-aosp17-20261102
 
-This is the default AOSP 17 source baseline plus limited-deployment reference runtime archives, not a fresh-machine installer. Read the exact hardware, account, protected-path, driver and dynamic-library requirements before use: https://github.com/miyu-xu/bscp-root/blob/746712bac5262ff2f91c45b4ec23e9d6ab0f5e3a/doc/aosp17/SUPPORTED-DEPLOYMENT-CONDITIONS-v1830.md
+This is the default AOSP 17 source baseline plus limited-deployment reference runtime archives, not a fresh-machine installer. Read the exact hardware, account, protected-path, driver and dynamic-library requirements before use: https://github.com/miyu-xu/bscp-root/blob/d25ad8d7cf42f704fefb208f5129048b7009100c/doc/aosp17/SUPPORTED-DEPLOYMENT-CONDITIONS-v1830.md
 
 Windows independent CLI reconnect remains disabled. Mac ext4 historical 70 pass / 1 fail is retained. Fault tasks remain UNKNOWN even when resources are REAPED. Real UI/input and A/H3 are outside the acceptance scope.
 
