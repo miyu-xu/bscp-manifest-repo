@@ -1,7 +1,11 @@
-# AOSP17 release preparation
-This branch provides a candidate aosp17.xml, not a completed default release.
-It pins the published preparation code commit and all1087 official AOSP project commits.
-The official superproject element is deliberately omitted from this composite manifest: the upstream superproject does not contain the BSCP root project; explicit per-project pins remain unchanged.
-main/default.xml and the r14 rollback branch remain unchanged until binary assets, installation/configuration binding and final source integration are complete.
-Do not treat a source sync as building the tested BSCP Host ports: the current frozen controller/provenance and Guest patchset are in the root repository; canonical portable Host build-source integration remains to be completed.
-The versioned A17 binaries have been archived and hash-verified locally but are not yet uploaded to a GitHub release.
+# Published AOSP 17 default
+
+`main/default.xml` includes `aosp17.xml`: 1087 official projects retain their exact fixed SHA revisions, plus the published BSCP root commit 6e595632b1518166317affb7442de042618c17ff. The custom Host source/build recipes and Guest adaptations are in the root release tree; syncing official projects alone does not build these ports.
+
+Release: https://github.com/miyu-xu/bscp-root/releases/tag/bscp-aosp17-20261102
+
+This is the default AOSP 17 source baseline plus limited-deployment reference runtime archives, not a fresh-machine installer. Read the exact hardware, account, protected-path, driver and dynamic-library requirements before use: https://github.com/miyu-xu/bscp-root/blob/6e595632b1518166317affb7442de042618c17ff/doc/aosp17/SUPPORTED-DEPLOYMENT-CONDITIONS-v1830.md
+
+Windows independent CLI reconnect remains disabled. Mac ext4 historical 70 pass / 1 fail is retained. Fault tasks remain UNKNOWN even when resources are REAPED. Real UI/input and A/H3 are outside the acceptance scope.
+
+Fresh checkout: `repo init -u https://github.com/miyu-xu/bscp-manifest-repo.git -b main` then `repo sync`. Do not force-sync/reset existing user changes. Rollback uses the preserved `bscp-android-15.0.0_r14` branch, manifest commit `89c0365a4dff5c0e52a5386877592a2f6fd45548`, root commit `43e4786a48c142b4c8b6f4bfb0db38cd32b20e42`. `r14-default.xml` preserves the previous default manifest without deleting its history. Never overwrite live/failed instance state or replay UNKNOWN requests.

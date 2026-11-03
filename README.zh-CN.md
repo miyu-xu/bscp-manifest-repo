@@ -1,3 +1,7 @@
+# Default: AOSP 17
+
+The default manifest now selects the fixed AOSP 17 baseline. [Release, supported deployment conditions and rollback](AOSP17-PREPARATION.md). Reference runtime archives are not arbitrary-machine installers.
+
 # BSCP 工作区 Manifest
 
 简体中文 | [English](README.md)
@@ -64,7 +68,7 @@ GPU/通用计算任务。
 | 分支 | 用途 |
 | --- | --- |
 | `main` | 以 Microdroid 为主的规范发布入口 |
-| `bscp-android-15.0.0_r14` | 当前 Android 基线的版本化别名 |
+| `bscp-android-15.0.0_r14` | 保留的 r14 回滚基线 |
 | `hd-feature` | 可选产品集成；增加 HD 仓库并选择匹配的 crosvm/gfxstream 分支 |
 
 主分支不包含 HD 产品代码或仓库入口。不要把 `hd-feature` 直接合入主分支；通用修复应先进入

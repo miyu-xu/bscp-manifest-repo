@@ -1,3 +1,7 @@
+# Default: AOSP 17
+
+The default manifest now selects the fixed AOSP 17 baseline. [Release, supported deployment conditions and rollback](AOSP17-PREPARATION.md). Reference runtime archives are not arbitrary-machine installers.
+
 # BSCP workspace manifest
 
 [简体中文](README.zh-CN.md) | English
@@ -80,7 +84,7 @@ security requirements instead of silently degrading them.
 | Branch | Purpose |
 | --- | --- |
 | `main` | Canonical Microdroid-first release entry point |
-| `bscp-android-15.0.0_r14` | Versioned alias of the current Android baseline |
+| `bscp-android-15.0.0_r14` | Preserved r14 rollback baseline |
 | `hd-feature` | Optional product integration; adds the HD repository and matching crosvm/gfxstream branches |
 
 The main branches contain no HD product code or repository entry. Do not merge `hd-feature` into
