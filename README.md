@@ -2,7 +2,7 @@
 
 The default manifest includes `aosp17.xml`: 1087 fixed official projects plus the published BSCP root. r14 remains a rollback baseline, not the current default. Reference binaries support only existing admitted deployments, not arbitrary-machine installation.
 
-[Current bilingual documentation](https://github.com/miyu-xu/bscp-root/blob/main/doc/README.md) | [Release, verification and rollback](https://github.com/miyu-xu/bscp-root/blob/main/doc/RELEASE.md) | [Fixed publication record](AOSP17-PREPARATION.md).
+[Current bilingual documentation](https://github.com/miyu-xu/bscp-root/blob/main/docs/README.md) | [Release, verification and rollback](https://github.com/miyu-xu/bscp-root/blob/main/docs/RELEASE.md) | [Fixed publication record](AOSP17-PREPARATION.md).
 
 # BSCP workspace manifest
 
