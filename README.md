@@ -57,22 +57,9 @@ hardware-hardened execution environment. This path is conditional: availability 
 SoC, kernel, firmware, Android release, and device-vendor configuration. Virtualization extensions
 alone are not evidence of pVM-grade security.
 
-Graphics and general-purpose compute are a planned next stage. The host-side virtio-gpu,
-rutabaga/gfxstream, and platform graphics backends already provide the foundation required for
-Microdroid Vulkan offscreen rendering; a new host graphics architecture is not required. The
-remaining code work for a host distribution built with the existing graphics profile and staged
-gfxstream/ANGLE runtime is primarily guest-side: enable and package the Vulkan loader, guest
-ICD/driver, and runtime libraries in the Microdroid image; configure device access,
-SELinux/permissions, and the VM GPU profile; then establish cross-platform correctness, security,
-resource-quota, and performance gates. A default host package that omits the optional graphics
-runtime only needs the existing build and packaging profile enabled; it does not require a new host
-backend implementation.
+Graphics and compute now have actual end-to-end evidence: finite AOSP17 Microdroid Vulkan offscreen pixel, coherent-buffer, VADD and llama.cpp inference workloads have been verified on Linux/KVM, Windows/WHPX and macOS/HVF. This does not imply arbitrary graphics, UI/input, or cross-machine coherent memory.
 
-The offscreen path does not require a window or display scanout. A payload can use Vulkan images
-and buffers as compute or rendering targets and retrieve results through controlled readback or
-resource export. Once that guest enablement and end-to-end evidence are complete, Microdroid can
-move beyond headless payloads and operate as a schedulable cross-platform compute endpoint for
-graphics, media, AI inference, and other GPU or general compute workloads.
+[Performance, versions and limits](https://github.com/miyu-xu/bscp-root/blob/main/docs/LLAMA-PERFORMANCE.md) distinguish historical same-machine baselines from isolated candidates. Native Android has been measured; phone Microdroid GPU has not. Strict CPU/GPU numerical failures remain explicit. Publishing source does not automatically enable experimental synchronization gates.
 
 The long-term objective is for BSCP to serve as compute infrastructure: immutable and verifiable
 guest images as delivery units, VMs as tenant and failure boundaries, and a common control plane
@@ -170,3 +157,5 @@ software. Every repository selected by the manifest retains its own license and 
 combined workspace.
 
 Current installation/verification instructions use private deployment configuration. AOSP 17 remains the default; r14 is rollback only. See [current release guidance](AOSP17-PREPARATION.md).
+
+The current source manifest may advance to documentation/experimental-source commits. Frozen binary manifests, release tags, checksums and r14 rollback remain unchanged. Source synchronization does not install experimental binaries.

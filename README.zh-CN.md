@@ -46,18 +46,9 @@ pvmfw、AVB/Verified Boot、受保护内存、可信密钥与证明服务、严�
 有条件的演进路径；是否可用取决于 SoC、内核、固件、Android 版本和设备厂商配置，不能仅凭
 存在虚拟化扩展就宣称已经达到 pVM 安全等级。
 
-图形与通用计算是下一阶段重点。当前 Host 侧的 virtio-gpu、rutabaga/gfxstream 及平台图形
-后端已经具备支撑 Microdroid Vulkan 离屏渲染的基础能力，不需要重新设计 Host 图形架构。
-对于已经按现有图形 profile 构建并装入 gfxstream/ANGLE runtime 的 Host 发行物，剩余代码
-改动主要集中在 Guest：在 Microdroid 镜像中启用并打包 Vulkan loader、Guest ICD/驱动及相关
-运行库，配置设备访问、SELinux/权限和 VM GPU profile，再完成跨平台一致性、安全性、资源
-配额与性能门禁。未包含可选图形 runtime 的默认 Host 包只需启用现有构建/打包配置，不代表
-需要开发新的 Host 后端。
+图形与通用计算已有实际端到端证据：AOSP17 Microdroid 在 Linux/KVM、Windows/WHPX 与 macOS/HVF 的有限 Vulkan 离屏像素、coherent buffer、VADD 和 llama.cpp 推理已验证。它们不等于任意图形功能、UI/输入或跨主机共享缓存。
 
-离屏路径不依赖窗口或显示 scanout；Payload 可以把 Vulkan image/buffer 作为计算与渲染目标，
-再通过受控 readback 或资源导出获取结果。上述 Guest 能力和端到端证据完成后，Microdroid 将
-不再局限于无图形 Payload，而可作为可调度的跨平台算力端点，承载图形、媒体、AI 推理和其他
-GPU/通用计算任务。
+[多平台性能、版本及限制](https://github.com/miyu-xu/bscp-root/blob/main/docs/LLAMA-PERFORMANCE.zh-CN.md)区分历史同机基准与隔离候选。手机原生 Android 已实测，但手机 Microdroid GPU 尚未运行；严格 CPU/GPU 数值差异仍保留。实验同步门禁不因源码上传自动开启。
 
 长期来看，BSCP 希望成为算力基础设施的一部分：以不可变、可验证的 Guest 镜像作为交付单元，
 以虚拟机作为租户和故障边界，并在统一控制面中提供调度、配额、可观测性、审计、升级和回滚。
@@ -139,3 +130,5 @@ BSCP 原创 manifest 配置和文档采用
 [工作区许可证策略](LICENSE_POLICY.zh-CN.md)。
 
 Current installation/verification instructions use private deployment configuration. AOSP 17 remains the default; r14 is rollback only. See [current release guidance](AOSP17-PREPARATION.md).
+
+当前源码清单可前进到新的文档/实验源码提交；已发布二进制的冻结清单、tag、校验和及 r14 回滚仍保留。源码同步不等于安装新实验二进制。
