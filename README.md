@@ -8,8 +8,9 @@ The default manifest includes `aosp17.xml`: 1087 fixed official projects plus th
 
 [简体中文](README.zh-CN.md) | English
 
-This is the canonical entry point for BSCP: a cross-platform, security-isolated Android compute
-platform for Linux/KVM, macOS/HVF, and Windows/WHPX. Microdroid is the primary guest and release
+This is the canonical entry point for BSCP: a cross-platform Microdroid Guest payload
+execution platform for Linux/KVM, macOS/HVF, and Windows/WHPX. Isolation guarantees depend
+on the admitted runtime and device profile; desktop guests are not Android protected VMs. Microdroid is the primary guest and release
 baseline. A Cuttlefish-derived full Android workflow is available as an optional compatibility
 path for framework, graphics, and device testing.
 
@@ -60,6 +61,10 @@ alone are not evidence of pVM-grade security.
 Graphics and compute now have actual end-to-end evidence: finite AOSP17 Microdroid Vulkan offscreen pixel, coherent-buffer, VADD and llama.cpp inference workloads have been verified on Linux/KVM, Windows/WHPX and macOS/HVF. This does not imply arbitrary graphics, UI/input, or cross-machine coherent memory.
 
 [Performance, versions and limits](https://github.com/miyu-xu/bscp-root/blob/main/docs/LLAMA-PERFORMANCE.md) distinguish historical same-machine baselines from isolated candidates. Native Android has been measured; phone Microdroid GPU has not. Strict CPU/GPU numerical failures remain explicit. Publishing source does not automatically enable experimental synchronization gates.
+
+Cross-device scheduling, unified quotas, and adversarial multi-tenant isolation are design goals,
+not established release guarantees. Existing VM failure tests do not prove protection against
+malicious guests or a compromised host. Android pVM support remains conditional as described above.
 
 The long-term objective is for BSCP to serve as compute infrastructure: immutable and verifiable
 guest images as delivery units, VMs as tenant and failure boundaries, and a common control plane
@@ -139,11 +144,22 @@ On Windows use `build_all.bat`, `vm_windows.ps1 -Command validate-prereqs`, and
 - Keep signing keys and credentials outside the workspace; do not commit `.repo/`, `out/`, logs,
   guest data, or generated binaries.
 - Run the Microdroid platform regression before any optional full Android validation.
-- Review `repo status`, project commit identities, weekend publication timestamps, and bilingual
-  documentation together before publishing rewritten branches.
+- Review `repo status`, project commit identities, publication records, and bilingual
+  documentation together before publishing changes.
 
-History in this workspace has been rewritten for release hygiene. Existing clones must reinitialize
-or fetch and reset explicitly after the corresponding remote branches are force-updated.
+### Existing workspaces and historical migrations
+
+Earlier documentation described a historical release-hygiene rewrite. It is not a notice of a
+pending force-update and is not an instruction to reset an existing workspace. The initialization
+commands above are for a new, empty workspace only.
+
+Before updating an existing checkout, inspect `repo status` and record the resolved manifest and
+project commits. Preserve local commits, uncommitted changes, private deployment configuration and
+instance disks. Fetching references does not require resetting the working tree. If history has
+diverged, stop and inspect the actual commits; use a separate empty workspace for the selected
+manifest and explicitly reconcile any local work. Do not use blanket reset, force-sync or
+reinitialization as an upgrade procedure. Source synchronization does not upgrade running VMs or
+frozen binary packages. Follow the root release/rollback guide for those separate operations.
 
 ## License and commercial use
 

@@ -8,8 +8,9 @@
 
 简体中文 | [English](README.md)
 
-本仓库是 BSCP 的规范主入口。BSCP 是面向 Linux/KVM、macOS/HVF 和 Windows/WHPX 的跨平台、
-安全隔离 Android 通用算力平台。Microdroid 是首要 Guest 与发布基线；基于 Cuttlefish 的完整
+本仓库是 BSCP 的规范主入口。BSCP 是面向 Linux/KVM、macOS/HVF 和 Windows/WHPX 的跨平台
+Microdroid Guest payload 执行平台。隔离保证取决于已准入的运行时与设备配置；桌面 Guest
+不等同于 Android protected VM。Microdroid 是首要 Guest 与发布基线；基于 Cuttlefish 的完整
 Android 工作流仅作为 Framework、图形和设备验证的附带兼容路径。
 
 manifest 负责仓库组合和固定分支选择；根仓库负责构建编排与运维；组件源码保留在独立仓库，
@@ -49,6 +50,9 @@ pvmfw、AVB/Verified Boot、受保护内存、可信密钥与证明服务、严�
 图形与通用计算已有实际端到端证据：AOSP17 Microdroid 在 Linux/KVM、Windows/WHPX 与 macOS/HVF 的有限 Vulkan 离屏像素、coherent buffer、VADD 和 llama.cpp 推理已验证。它们不等于任意图形功能、UI/输入或跨主机共享缓存。
 
 [多平台性能、版本及限制](https://github.com/miyu-xu/bscp-root/blob/main/docs/LLAMA-PERFORMANCE.zh-CN.md)区分历史同机基准与隔离候选。手机原生 Android 已实测，但手机 Microdroid GPU 尚未运行；严格 CPU/GPU 数值差异仍保留。实验同步门禁不因源码上传自动开启。
+
+跨设备调度、统一配额和对抗性多租户隔离属于设计目标，不是已确立的发布保证。已有 VM
+故障测试不能证明对恶意 Guest 或已被攻陷 Host 的防护；Android pVM 仍受上述条件约束。
 
 长期来看，BSCP 希望成为算力基础设施的一部分：以不可变、可验证的 Guest 镜像作为交付单元，
 以虚拟机作为租户和故障边界，并在统一控制面中提供调度、配额、可观测性、审计、升级和回滚。
@@ -114,10 +118,18 @@ repo status
 - 调试策略、无限制网络、主机挂载和未加密存储只能是显式开发能力，不能作为生产默认值。
 - 签名密钥与凭据保存在工作区之外；不得提交 `.repo/`、`out/`、日志、Guest 数据或生成二进制。
 - 任何完整 Android 验证之前，必须先通过 Microdroid 平台回归。
-- 发布重写分支前，同时审查 `repo status`、提交身份、周末发布时间和中英文文档。
+- 发布变更前，同时审查 `repo status`、提交身份、发布记录和中英文文档。
 
-本工作区历史已按发布要求重写。远端强制更新相应分支后，旧检出必须重新初始化，或显式获取
-并重置到新历史。
+### 已有工作区与历史迁移
+
+早期文档描述过一次历史发布整理；这不是待执行强制更新的通知，也不是要求重置已有工作区。
+上面的初始化命令仅适用于新的空工作区。
+
+更新已有检出前，先检查 `repo status` 并记录解析后的清单及各项目提交。保留本地提交、
+未提交修改、私有部署配置和实例磁盘。获取远端引用不要求重置工作树。如果历史分叉，应停止
+并检查实际提交；在另一个空工作区检出所选清单，再明确协调需要保留的本地修改。不要把全量
+reset、force-sync 或重新初始化作为升级流程。源码同步不升级正在运行的 VM 或冻结二进制包；
+这些独立操作应遵循 root 的发布与回滚指南。
 
 ## 许可证与商业使用
 
@@ -129,6 +141,6 @@ BSCP 原创 manifest 配置和文档采用
 选择的每个独立仓库继续保留自身许可证和声明。构建、打包或再分发组合工作区之前，请阅读
 [工作区许可证策略](LICENSE_POLICY.zh-CN.md)。
 
-Current installation/verification instructions use private deployment configuration. AOSP 17 remains the default; r14 is rollback only. See [current release guidance](AOSP17-PREPARATION.md).
+当前安装与校验说明使用私有部署配置。AOSP 17 仍是默认版本，r14 仅用于回滚。见[当前发布指南](AOSP17-PREPARATION.md)。
 
 当前源码清单可前进到新的文档/实验源码提交；已发布二进制的冻结清单、tag、校验和及 r14 回滚仍保留。源码同步不等于安装新实验二进制。
